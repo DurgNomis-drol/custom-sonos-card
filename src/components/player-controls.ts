@@ -17,7 +17,6 @@ import {
   mdiVolumePlus,
   mdiVolumeHigh, 
   mdiVolumeMute,
-  mdiPlaylistRemove,
 } from '@mdi/js';
 import { iconButton } from './icon-button';
 import { MediaPlayer } from '../model/media-player';
@@ -49,7 +48,7 @@ class PlayerControls extends LitElement {
           ${iconButton(mdiSkipNext, this.next)}
           ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
           <div class="mute">
-          ${iconButton(mdiPlaylistRemove, this.clearPlaylist)}
+          <div><&nbsp;/div>
           ${iconButton(
             this.activePlayer.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
             async () => await this.mediaControlService.toggleMute(this.activePlayer, this.updateMembers),
@@ -68,7 +67,7 @@ class PlayerControls extends LitElement {
   private repeat = async () => await this.mediaControlService.repeat(this.activePlayer);
   private volDown = async () => await this.mediaControlService.volumeDown(this.activePlayer);
   private volUp = async () => await this.mediaControlService.volumeUp(this.activePlayer);
-  private clearPlaylist = async () => await this.mediaControlService.clearPlaylist(this.activePlayer);
+
 
   private shuffleIcon() {
     return this.activePlayer?.attributes.shuffle ? mdiShuffleVariant : mdiShuffleDisabled;
