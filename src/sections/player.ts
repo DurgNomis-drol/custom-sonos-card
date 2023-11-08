@@ -22,8 +22,8 @@ export class Player extends LitElement {
 
     return html`
       <div class="row">
-        <sonos-player-header .store=${this.store}></sonos-player-header>
         <div class="artwork" style="${this.getBackgroundImage()}"></div>
+        <sonos-player-header .store=${this.store}></sonos-player-header>
         <sonos-player-controls style="overflow-y:auto" .store=${this.store}></sonos-player-controls>
       </div>
     `;
@@ -78,6 +78,7 @@ export class Player extends LitElement {
       }
 
       .row {
+        margin: 0.25rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
