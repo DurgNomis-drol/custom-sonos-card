@@ -3,14 +3,12 @@ import { property } from 'lit/decorators.js';
 import MediaControlService from '../services/media-control-service';
 import Store from '../model/store';
 import { CardConfig } from '../types';
-import { mdiVolumeHigh, mdiVolumeMute, mdiVolumeMinus, mdiVolumePlus, } from '@mdi/js';
 import { iconButton } from './icon-button';
 import { MediaPlayer } from '../model/media-player';
 
 class Volume extends LitElement {
   @property() store!: Store;
   private config!: CardConfig;
-  private activePlayer!: MediaPlayer;
   private mediaControlService!: MediaControlService;
   @property() player!: MediaPlayer;
   @property() updateMembers = true;
@@ -18,7 +16,6 @@ class Volume extends LitElement {
 
   render() {
     this.config = this.store.config;
-    this.activePlayer = this.store.activePlayer;
     this.mediaControlService = this.store.mediaControlService;
 
     const volume = 100 * this.player.attributes.volume_level;
@@ -31,11 +28,6 @@ class Volume extends LitElement {
 
     return html`
       <div class="volume">
-        ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumeMinus, this.volDown) : ''}
-        ${iconButton(
-          this.player.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
-          async () => await this.mediaControlService.toggleMute(this.player, this.updateMembers),
-        )}
         ${this.config.showVolumeSlider ? html`
         <div class="volume-slider">
           <ha-control-slider .value="${volume}" max=${max} @value-changed=${this.volumeChanged}> </ha-control-slider>
@@ -48,13 +40,11 @@ class Volume extends LitElement {
           </div>
         </div>
         ` : ''}
-        ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
       </div>
     `;
   }
 
-  private volDown = async () => await this.mediaControlService.volumeDown(this.activePlayer);
-  private volUp = async () => await this.mediaControlService.volumeUp(this.activePlayer);
+
 
   private async volumeChanged(e: Event) {
     const volume = numberFromEvent(e);
