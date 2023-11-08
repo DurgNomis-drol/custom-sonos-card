@@ -38,16 +38,20 @@ class PlayerControls extends LitElement {
     return html`
       <div class="main" id="mediaControls">
         <div class="icons">
+          <div class="options">
+            ${iconButton(this.shuffleIcon(), this.shuffle)}
+            ${iconButton(this.repeatIcon(), this.repeat)}
+          </div>
           ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumeMinus, this.volDown) : ''}
-          ${iconButton(this.shuffleIcon(), this.shuffle)} ${iconButton(mdiSkipPrevious, this.prev)}
+          ${iconButton(mdiSkipPrevious, this.prev)}
           ${iconButton(playing ? mdiPauseCircle : mdiPlayCircle, playing ? this.pause : this.play, { big: true })}
-          ${iconButton(mdiSkipNext, this.next)} ${iconButton(this.repeatIcon(), this.repeat)}
+          ${iconButton(mdiSkipNext, this.next)}
           ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
-          <div style="margin-left: auto;">
-            ${iconButton(
-              this.activePlayer.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
-              async () => await this.mediaControlService.toggleMute(this.activePlayer, this.updateMembers),
-            )}
+          <div class="mute">
+          ${iconButton(
+            this.activePlayer.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
+            async () => await this.mediaControlService.toggleMute(this.activePlayer, this.updateMembers),
+          )}
           </div>
         </div>
         <sonos-volume .store=${this.store} .player=${this.activePlayer}></sonos-volume>
@@ -83,6 +87,12 @@ class PlayerControls extends LitElement {
         justify-content: center;
         display: flex;
         align-items: center;
+      }
+      .options {
+        margin-right: auto;
+      }
+      .mute {
+        margin-left: auto;
       }
     `;
   }
