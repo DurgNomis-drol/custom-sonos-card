@@ -2,7 +2,6 @@ import { css, html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import MediaControlService from '../services/media-control-service';
 import Store from '../model/store';
-import { CardConfig } from '../types';
 import {
   mdiPauseCircle,
   mdiPlayCircle,
