@@ -48,7 +48,7 @@ class PlayerControls extends LitElement {
           ${iconButton(mdiSkipNext, this.next)}
           ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
           <div class="mute">
-          <div><&nbsp;/div>
+          <div>&nbsp;</div>
           ${iconButton(
             this.activePlayer.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
             async () => await this.mediaControlService.toggleMute(this.activePlayer, this.updateMembers),
