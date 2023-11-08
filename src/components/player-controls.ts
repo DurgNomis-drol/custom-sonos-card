@@ -19,12 +19,10 @@ import { MediaPlayer } from '../model/media-player';
 
 class PlayerControls extends LitElement {
   @property() store!: Store;
-  private config!: CardConfig;
   private activePlayer!: MediaPlayer;
   private mediaControlService!: MediaControlService;
 
   render() {
-    this.config = this.store.config;
     this.activePlayer = this.store.activePlayer;
     this.mediaControlService = this.store.mediaControlService;
 
