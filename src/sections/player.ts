@@ -78,7 +78,6 @@ export class Player extends LitElement {
       }
 
       .row {
-        margin: 0.25rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -86,6 +85,7 @@ export class Player extends LitElement {
       }
 
       .artwork {
+        margin-top: 0.25rem;
         align-self: center;
         flex-grow: 1;
         flex-shrink: 0;
