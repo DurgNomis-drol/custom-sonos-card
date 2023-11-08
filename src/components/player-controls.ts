@@ -26,7 +26,6 @@ class PlayerControls extends LitElement {
   private config!: CardConfig;
   private activePlayer!: MediaPlayer;
   private mediaControlService!: MediaControlService;
-  @property() player!: MediaPlayer;
   @property() updateMembers = true;
   @property() volumeClicked?: () => void;
 
@@ -45,8 +44,8 @@ class PlayerControls extends LitElement {
           ${iconButton(mdiSkipNext, this.next)} ${iconButton(this.repeatIcon(), this.repeat)}
           ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
           ${iconButton(
-            this.player.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
-            async () => await this.mediaControlService.toggleMute(this.player, this.updateMembers),
+            this.activePlayer.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
+            async () => await this.mediaControlService.toggleMute(this.activePlayer, this.updateMembers),
           )}
         </div>
         <sonos-volume .store=${this.store} .player=${this.activePlayer}></sonos-volume>
