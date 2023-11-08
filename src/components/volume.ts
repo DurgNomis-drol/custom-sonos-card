@@ -10,6 +10,7 @@ import { MediaPlayer } from '../model/media-player';
 class Volume extends LitElement {
   @property() store!: Store;
   private config!: CardConfig;
+  private activePlayer!: MediaPlayer;
   private mediaControlService!: MediaControlService;
   @property() player!: MediaPlayer;
   @property() updateMembers = true;
@@ -17,6 +18,7 @@ class Volume extends LitElement {
 
   render() {
     this.config = this.store.config;
+    this.activePlayer = this.store.activePlayer;
     this.mediaControlService = this.store.mediaControlService;
 
     const volume = 100 * this.player.attributes.volume_level;
