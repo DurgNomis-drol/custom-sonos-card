@@ -3,7 +3,6 @@ import { property } from 'lit/decorators.js';
 import MediaControlService from '../services/media-control-service';
 import Store from '../model/store';
 import { CardConfig } from '../types';
-import { iconButton } from './icon-button';
 import { MediaPlayer } from '../model/media-player';
 
 class Volume extends LitElement {
