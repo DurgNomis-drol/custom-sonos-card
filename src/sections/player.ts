@@ -22,6 +22,7 @@ export class Player extends LitElement {
 
     return html`
       <div class="row">
+        <sonos-progress .store=${this.store}></sonos-progress>
         <div class="artwork" style="${this.getBackgroundImage()}"></div>
         <sonos-player-header .store=${this.store}></sonos-player-header>
         <sonos-player-controls style="overflow-y:auto" .store=${this.store}></sonos-player-controls>

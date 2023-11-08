@@ -20,7 +20,6 @@ class PlayerHeader extends LitElement {
       song = this.activePlayer.getCurrentTrack();
     }
     return html` <div class="info">
-      <sonos-progress .store=${this.store}></sonos-progress>
       <div class="entity">${speakerList}</div>
       <div class="song">${song}</div>
       <div class="artist-album">${this.activePlayer.attributes.media_album_name}</div>
