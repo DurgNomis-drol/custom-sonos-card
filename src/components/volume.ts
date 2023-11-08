@@ -74,6 +74,7 @@ class Volume extends LitElement {
       .volume {
         display: flex;
         flex: 1;
+        justify-content: center;
       }
 
       .volume-slider {

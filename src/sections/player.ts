@@ -78,6 +78,8 @@ export class Player extends LitElement {
       }
 
       .row {
+        margin-top: 0.25rem;
+        padding-top: 0.5rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

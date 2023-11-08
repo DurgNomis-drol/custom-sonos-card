@@ -56,8 +56,8 @@ class PlayerControls extends LitElement {
   static get styles() {
     return css`
       .main {
-        margin: 0.25rem;
-        padding: 0.5rem;
+        margin: 0.1rem;
+        padding: 0.1rem;
         overflow: hidden auto;
       }
       .icons {
