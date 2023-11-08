@@ -21,6 +21,7 @@ export type ConfigPredefinedGroup = PredefinedGroup<string | ConfigPredefinedGro
 export interface CardConfig extends LovelaceCardConfig {
   sections?: Section[];
   showVolumeUpAndDownButtons: boolean;
+  showVolumeSlider: boolean;
   entities?: string[];
   excludeItemsInEntitiesList: boolean;
   predefinedGroups?: ConfigPredefinedGroup[];

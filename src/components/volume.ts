@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js';
 import MediaControlService from '../services/media-control-service';
 import Store from '../model/store';
 import { CardConfig } from '../types';
-import { mdiVolumeHigh, mdiVolumeMute } from '@mdi/js';
+import { mdiVolumeHigh, mdiVolumeMute, mdiVolumeMinus, mdiVolumePlus, } from '@mdi/js';
 import { iconButton } from './icon-button';
 import { MediaPlayer } from '../model/media-player';
 
@@ -29,10 +29,12 @@ class Volume extends LitElement {
 
     return html`
       <div class="volume">
+        ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumeMinus, this.volDown) : ''}
         ${iconButton(
           this.player.isMuted(this.updateMembers) ? mdiVolumeMute : mdiVolumeHigh,
           async () => await this.mediaControlService.toggleMute(this.player, this.updateMembers),
         )}
+        ${this.config.showVolumeSlider ? html`
         <div class="volume-slider">
           <ha-control-slider .value="${volume}" max=${max} @value-changed=${this.volumeChanged}> </ha-control-slider>
           <div class="volume-level">
@@ -43,9 +45,14 @@ class Volume extends LitElement {
             <div style="flex: ${max - volume};text-align: right">${max}%</div>
           </div>
         </div>
+        ` : ''}
+        ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
       </div>
     `;
   }
+
+  private volDown = async () => await this.mediaControlService.volumeDown(this.activePlayer);
+  private volUp = async () => await this.mediaControlService.volumeUp(this.activePlayer);
 
   private async volumeChanged(e: Event) {
     const volume = numberFromEvent(e);

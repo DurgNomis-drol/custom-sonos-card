@@ -30,6 +30,10 @@ export const GENERAL_SCHEMA = [
     selector: { boolean: {} },
   },
   {
+    name: 'showVolumeSlider',
+    selector: { boolean: {} },
+  },
+  {
     type: 'integer',
     name: 'widthPercentage',
     default: 100,

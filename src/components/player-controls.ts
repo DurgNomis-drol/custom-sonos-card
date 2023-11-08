@@ -13,8 +13,6 @@ import {
   mdiShuffleVariant,
   mdiSkipNext,
   mdiSkipPrevious,
-  mdiVolumeMinus,
-  mdiVolumePlus,
 } from '@mdi/js';
 import { iconButton } from './icon-button';
 import { MediaPlayer } from '../model/media-player';
@@ -34,11 +32,9 @@ class PlayerControls extends LitElement {
     return html`
       <div class="main" id="mediaControls">
         <div class="icons">
-          ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumeMinus, this.volDown) : ''}
           ${iconButton(this.shuffleIcon(), this.shuffle)} ${iconButton(mdiSkipPrevious, this.prev)}
           ${iconButton(playing ? mdiPauseCircle : mdiPlayCircle, playing ? this.pause : this.play, { big: true })}
           ${iconButton(mdiSkipNext, this.next)} ${iconButton(this.repeatIcon(), this.repeat)}
-          ${this.config.showVolumeUpAndDownButtons ? iconButton(mdiVolumePlus, this.volUp) : ''}
         </div>
         <sonos-volume .store=${this.store} .player=${this.activePlayer}></sonos-volume>
       </div>
@@ -50,8 +46,6 @@ class PlayerControls extends LitElement {
   private next = async () => await this.mediaControlService.next(this.activePlayer);
   private shuffle = async () => await this.mediaControlService.shuffle(this.activePlayer);
   private repeat = async () => await this.mediaControlService.repeat(this.activePlayer);
-  private volDown = async () => await this.mediaControlService.volumeDown(this.activePlayer);
-  private volUp = async () => await this.mediaControlService.volumeUp(this.activePlayer);
 
   private shuffleIcon() {
     return this.activePlayer?.attributes.shuffle ? mdiShuffleVariant : mdiShuffleDisabled;
